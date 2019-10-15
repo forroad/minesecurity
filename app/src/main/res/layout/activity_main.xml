@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent">
+        <androidx.viewpager.widget.ViewPager android:fitsSystemWindows="true"  android:id="@+id/main_viewpage" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1.0" android:overScrollMode="never" />
+        <TextView android:background="#81919191" android:layout_width="match_parent" android:layout_height="0.5dp" />
+        <LinearLayout android:baselineAligned="false" android:gravity="center_vertical" android:orientation="horizontal" android:id="@+id/main_footer" android:background="#FFFFFF" android:layout_width="match_parent" android:layout_height="49.0dip">
+            <LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:id="@+id/tab_homepage" android:paddingTop="5.0dip" android:paddingBottom="5.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0">
+                <FrameLayout android:layout_width="wrap_content" android:layout_height="25dp">
+                    <ImageView android:layout_gravity="center" android:id="@+id/home_page" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:layout_marginRight="5.0dip" android:src="@drawable/tab_home_normal" />
+                    <ImageView android:layout_gravity="center" android:id="@+id/home_page1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:layout_marginRight="5.0dip" android:src="@drawable/tab_home_selected" android:alpha="1.0" />
+                </FrameLayout>
+                <TextView android:textSize="10.0sp" android:textColor="#ff999999" android:layout_gravity="center" android:id="@+id/homepage_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="首页" />
+            </LinearLayout>
+            <LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:id="@+id/tab_study" android:paddingTop="5.0dip" android:paddingBottom="5.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0">
+                <FrameLayout android:layout_width="wrap_content" android:layout_height="25dp">
+                    <ImageView android:layout_gravity="center" android:id="@+id/security_study" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:layout_marginRight="5.0dip" android:src="@drawable/tab_study_normal" />
+                    <ImageView android:layout_gravity="center" android:id="@+id/security_study1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:layout_marginRight="5.0dip" android:src="@drawable/tab_study_selected" android:alpha="0.0"  />
+                </FrameLayout>
+                <TextView android:textSize="10.0sp" android:textColor="#ff999999" android:layout_gravity="center" android:id="@+id/securitystudy_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="学习" />
+            </LinearLayout>
+            <LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:id="@+id/tab_exam" android:paddingTop="5.0dip" android:paddingBottom="5.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0">
+                <FrameLayout android:layout_width="wrap_content" android:layout_height="25dp">
+                    <ImageView android:layout_gravity="center" android:id="@+id/exam" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:layout_marginRight="5.0dip" android:src="@drawable/tab_exam_normal" />
+                    <ImageView android:layout_gravity="center" android:id="@+id/exam1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:layout_marginRight="5.0dip" android:src="@drawable/tab_exam_selected" android:alpha="0.0" />
+                </FrameLayout>
+                <TextView android:textSize="10.0sp" android:textColor="#ff999999" android:layout_gravity="center" android:id="@+id/exam_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="考试" />
+            </LinearLayout>
+            <LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:id="@+id/tab_mine" android:paddingTop="5.0dip" android:paddingBottom="5.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0">
+                <FrameLayout android:layout_width="wrap_content" android:layout_height="25dp">
+                    <ImageView android:layout_gravity="center" android:id="@+id/mine" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:layout_marginRight="5.0dip" android:src="@drawable/tab_account_normal" />
+                    <ImageView android:layout_gravity="center" android:id="@+id/mine1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:layout_marginRight="5.0dip" android:src="@drawable/tab_account_selected" android:alpha="0.0" />
+                </FrameLayout>
+                <TextView android:textSize="10.0sp" android:textColor="#ff999999" android:layout_gravity="center" android:id="@+id/mine_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="我的" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <View android:id="@+id/popupwindow_mask" android:background="#66000000" android:visibility="gone" android:layout_width="match_parent" android:layout_height="match_parent" />
+</FrameLayout>
