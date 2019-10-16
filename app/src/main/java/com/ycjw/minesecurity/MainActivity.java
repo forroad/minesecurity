@@ -1,23 +1,22 @@
 package com.ycjw.minesecurity;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewParent;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.ycjw.minesecurity.adapter.MainAdapter;
 import com.ycjw.minesecurity.model.User;
+import com.ycjw.minesecurity.util.GlideUtil;
 
-import java.security.cert.PolicyNode;
 import java.util.ArrayList;
 
 public class MainActivity extends BaseActivity {
@@ -49,6 +48,22 @@ public class MainActivity extends BaseActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(user == null){
+            Toast.makeText(MainActivity.this,"未登录，请先登录",Toast.LENGTH_SHORT).show();
+            LoginActivity.actionStart(MainActivity.this);
+        }
+
+        if(main_viewpage.getCurrentItem() == 3){
+            //显示头像
+            ImageView mine_image = findViewById(R.id.mine_image);
+            //加载用户头像
+            GlideUtil.showImage(mine_image, GlideUtil.ImgType.head_img,MainActivity.this);
+        }
+    }
+
     public static void actionStart(Context context){
         Intent intent = new Intent(context,MainActivity.class);
         //intent.putExtra("param",value);
@@ -59,6 +74,7 @@ public class MainActivity extends BaseActivity {
     public void onBackPressed() {
 
     }
+
 
     /**
      * 初始化主界面控件
@@ -77,6 +93,7 @@ public class MainActivity extends BaseActivity {
         mine = findViewById(R.id.mine);
         mine1 = findViewById(R.id.mine1);
         main_viewpage = findViewById(R.id.main_viewpage);
+
 
         LayoutInflater li = getLayoutInflater();
         views.add(li.inflate(R.layout.layout_view_home,null,false));
@@ -119,9 +136,20 @@ public class MainActivity extends BaseActivity {
                         setInitImageView();
                         mine1.setAlpha(1.0f);
                         mine.setAlpha(0.0f);
+                        //我的界面点击事件
+                        ConstraintLayout mine_setting;mine_setting = findViewById(R.id.mine_setting);
+                        mine_setting.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                SettingActivity.actionStart(MainActivity.this);
+                            }
+                        });
+                        //显示头像
+                        ImageView mine_image = findViewById(R.id.mine_image);
+                        //加载用户头像
+                        GlideUtil.showImage(mine_image, GlideUtil.ImgType.head_img,MainActivity.this);
                         break;
                      default:break;
-
                 }
             }
 
@@ -189,6 +217,7 @@ public class MainActivity extends BaseActivity {
             }
         });
     }
+
 
     //将底部导航栏状态设置为初始状态
     private void setInitImageView(){

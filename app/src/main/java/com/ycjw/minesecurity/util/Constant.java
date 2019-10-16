@@ -1,4 +1,4 @@
-package com.ycjw.minesecurity.model;
+package com.ycjw.minesecurity.util;
 
 public class Constant {
     public static final String HTTP = "http://";

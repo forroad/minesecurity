@@ -1,12 +1,9 @@
 package com.ycjw.minesecurity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -15,8 +12,8 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.ycjw.minesecurity.model.AndroidUtil;
-import com.ycjw.minesecurity.model.Constant;
+import com.ycjw.minesecurity.util.AndroidUtil;
+import com.ycjw.minesecurity.util.Constant;
 import com.ycjw.minesecurity.model.Response;
 import com.ycjw.minesecurity.model.User;
 
@@ -35,6 +32,7 @@ public class LoginActivity extends BaseActivity {
     private Button login_or_register;
     private TextView login_tip;
     private TextView toolbar_text;
+    private TextView register_password_tip;
     private ImageView login_return;
 
     @Override
@@ -46,6 +44,16 @@ public class LoginActivity extends BaseActivity {
         initLoginWidget();
     }
 
+    public static void actionStart(Context context){
+        Intent intent = new Intent(context,LoginActivity.class);
+        context.startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        ActivityController.finishAll();
+    }
+
     private void initLoginWidget(){
         login_telephone = findViewById(R.id.login_telephone);
         login_password = findViewById(R.id.login_password);
@@ -54,6 +62,7 @@ public class LoginActivity extends BaseActivity {
         login_tip = findViewById(R.id.login_tip);
         toolbar_text = findViewById(R.id.login_title_text);
         login_return = findViewById(R.id.login_return);
+        register_password_tip = findViewById(R.id.register_password_tip);
 
         //初始化界面
         changeWidget();
@@ -96,11 +105,13 @@ public class LoginActivity extends BaseActivity {
         if(symbol == 1){
             toolbar_text.setText("登录");
             login_password_ok.setVisibility(View.GONE);
+            register_password_tip.setVisibility(View.GONE);
             login_or_register.setText("登录");
             login_tip.setText("立即注册");
         }else {
             toolbar_text.setText("注册");
             login_password_ok.setVisibility(View.VISIBLE);
+            register_password_tip.setVisibility(View.VISIBLE);
             login_or_register.setText("注册");
             login_tip.setText("已有账号，立即登录");
         }
@@ -132,6 +143,12 @@ public class LoginActivity extends BaseActivity {
                         com.ycjw.minesecurity.model.Response<User> login_response = gson.fromJson(responseData, new TypeToken<com.ycjw.minesecurity.model.Response<User>>(){}.getType());
                         login_success(login_response);
                     }catch (Exception e){
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(LoginActivity.this,"登录失败，请检查网络",Toast.LENGTH_SHORT).show();
+                            }
+                        });
                         e.printStackTrace();
                     }
                 }
@@ -167,6 +184,12 @@ public class LoginActivity extends BaseActivity {
                         com.ycjw.minesecurity.model.Response<User> register_response = gson.fromJson(responseData, new TypeToken<com.ycjw.minesecurity.model.Response<User>>(){}.getType());
                         register_sucess(register_response);
                     }catch (Exception e){
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(LoginActivity.this,"注册失败，请检查网络",Toast.LENGTH_SHORT).show();
+                            }
+                        });
                         e.printStackTrace();
                     }
                 }
