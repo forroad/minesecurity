@@ -2,6 +2,7 @@ package com.ycjw.minesecurity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -118,7 +119,11 @@ public class ModifyPasswordActivity extends BaseActivity {
                 if(userResponse.getMessage().endsWith("成功")){
                     AndroidUtil.hideOneInputMethod(ModifyPasswordActivity.this);
                     Toast.makeText(ModifyPasswordActivity.this,userResponse.getMessage(),Toast.LENGTH_SHORT).show();
-                    MainActivity.user = userResponse.getData();
+                    MainActivity.user = null;
+                    SharedPreferences preferences = getSharedPreferences("data",MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("user", "");
+                    editor.apply();
                     LoginActivity.actionStart(ModifyPasswordActivity.this);
                 }else {
                     AndroidUtil.hideOneInputMethod(ModifyPasswordActivity.this);

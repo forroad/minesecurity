@@ -11,6 +11,7 @@ import android.annotation.TargetApi;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -45,6 +46,8 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+
+import static com.ycjw.minesecurity.MainActivity.user;
 
 public class SettingActivity extends BaseActivity {
     private static final int CHOOSE_PHOTO = 2;
@@ -104,7 +107,7 @@ public class SettingActivity extends BaseActivity {
         setting_head_image = findViewById(R.id.setting_head_image);
 
         //加载用户头像
-        GlideUtil.showImage(setting_head_image, GlideUtil.ImgType.head_img,SettingActivity.this);
+        GlideUtil.showHeadImage(setting_head_image,SettingActivity.this);
 
         setting_return.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,6 +160,10 @@ public class SettingActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 MainActivity.user = null;
+                SharedPreferences preferences = getSharedPreferences("data",MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("user", "");
+                editor.apply();
                 LoginActivity.actionStart(SettingActivity.this);
             }
         });
@@ -189,12 +196,13 @@ public class SettingActivity extends BaseActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        switch (requestCode){
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
             case CHOOSE_PHOTO:
-                if(resultCode == RESULT_OK){
-                    if(Build.VERSION.SDK_INT >= 19){
+                if (resultCode == RESULT_OK) {
+                    if (Build.VERSION.SDK_INT >= 19) {
                         handleImageOnKitKat(data);
-                    }else {
+                    } else {
                         handleImageBeforeKitKat(data);
                     }
                 }
@@ -308,7 +316,7 @@ public class SettingActivity extends BaseActivity {
                     //加载用户头像
                     MainActivity.user = userResponse.getData();
                     GlideUtil.set_glide_signature(GlideUtil.ImgType.head_img);
-                    GlideUtil.showImage(setting_head_image, GlideUtil.ImgType.head_img,SettingActivity.this);
+                    GlideUtil.showHeadImage(setting_head_image,SettingActivity.this);
                     Toast.makeText(SettingActivity.this,userResponse.getMessage(),Toast.LENGTH_SHORT).show();
                 }else {
                     AndroidUtil.hideOneInputMethod(SettingActivity.this);

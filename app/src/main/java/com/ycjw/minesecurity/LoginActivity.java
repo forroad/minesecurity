@@ -2,6 +2,7 @@ package com.ycjw.minesecurity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,9 @@ import com.ycjw.minesecurity.util.AndroidUtil;
 import com.ycjw.minesecurity.util.Constant;
 import com.ycjw.minesecurity.model.Response;
 import com.ycjw.minesecurity.model.User;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
@@ -203,7 +207,11 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void run() {
                if(userResponse.getMessage().equals("登录成功")){
-                   user = userResponse.getData();
+                   MainActivity.user = userResponse.getData();
+                   SharedPreferences preferences = getSharedPreferences("data",MODE_PRIVATE);
+                   SharedPreferences.Editor editor = preferences.edit();
+                   editor.putString("user", new Gson().toJson(user));
+                   editor.apply();
                    MainActivity.actionStart(LoginActivity.this);
                }else {
                    Toast.makeText(LoginActivity.this,userResponse.getMessage(),Toast.LENGTH_SHORT).show();

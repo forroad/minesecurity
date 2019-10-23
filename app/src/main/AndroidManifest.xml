@@ -16,7 +16,14 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
-        <activity android:name=".ModifyPasswordActivity"></activity>
+        <activity android:name=".TrainingBackActivity"></activity>
+        <activity android:name=".TrainingActivity" />
+        <activity android:name=".PlanActivity" />
+        <activity android:name=".ExamRecordActivity" />
+        <activity android:name=".StatisticActivity" />
+        <activity android:name=".ExamActivity" />
+        <activity android:name=".StudyActivity" />
+        <activity android:name=".ModifyPasswordActivity" />
         <activity android:name=".SettingActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".ModifyActivity" />

@@ -2,22 +2,41 @@ package com.ycjw.minesecurity;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.ycjw.minesecurity.adapter.ExamAdapter;
 import com.ycjw.minesecurity.adapter.MainAdapter;
+import com.ycjw.minesecurity.adapter.ResourceAdapter;
+import com.ycjw.minesecurity.model.Exam;
+import com.ycjw.minesecurity.model.Resource;
+import com.ycjw.minesecurity.model.Response;
 import com.ycjw.minesecurity.model.User;
+import com.ycjw.minesecurity.util.Constant;
 import com.ycjw.minesecurity.util.GlideUtil;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
 
 public class MainActivity extends BaseActivity {
     public static User user = null;
@@ -51,16 +70,27 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        SharedPreferences preferences = getSharedPreferences("data",MODE_PRIVATE);
+        String user_json = preferences.getString("user","");
+        if(user_json.equals("")){
+            Toast.makeText(MainActivity.this,"未登录，请先登录",Toast.LENGTH_SHORT).show();
+            finish();
+        }
+        Gson gson = new Gson();
+        try {
+            user = gson.fromJson(user_json,User.class);
+        }catch (Exception e){
+            Toast.makeText(MainActivity.this,"未登录，请先登录",Toast.LENGTH_SHORT).show();
+            finish();
+        }
         if(user == null){
             Toast.makeText(MainActivity.this,"未登录，请先登录",Toast.LENGTH_SHORT).show();
+            finish();
             LoginActivity.actionStart(MainActivity.this);
         }
 
-        if(main_viewpage.getCurrentItem() == 3){
-            //显示头像
-            ImageView mine_image = findViewById(R.id.mine_image);
-            //加载用户头像
-            GlideUtil.showImage(mine_image, GlideUtil.ImgType.head_img,MainActivity.this);
+        if(!user.isComplete()){
+            Toast.makeText(MainActivity.this,"请前往设置界面完善个人信息",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -123,32 +153,26 @@ public class MainActivity extends BaseActivity {
                         home_page.setAlpha(0.0f);
                         break;
                     case 1:
+                    {
                         setInitImageView();
                         security_study1.setAlpha(1.0f);
                         security_study.setAlpha(0.0f);
                         break;
+                    }
                     case 2:
+                    {
                         setInitImageView();
                         exam1.setAlpha(1.0f);
                         exam.setAlpha(0.0f);
                         break;
+                    }
                     case 3:
+                    {
                         setInitImageView();
                         mine1.setAlpha(1.0f);
                         mine.setAlpha(0.0f);
-                        //我的界面点击事件
-                        ConstraintLayout mine_setting;mine_setting = findViewById(R.id.mine_setting);
-                        mine_setting.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                SettingActivity.actionStart(MainActivity.this);
-                            }
-                        });
-                        //显示头像
-                        ImageView mine_image = findViewById(R.id.mine_image);
-                        //加载用户头像
-                        GlideUtil.showImage(mine_image, GlideUtil.ImgType.head_img,MainActivity.this);
                         break;
+                    }
                      default:break;
                 }
             }

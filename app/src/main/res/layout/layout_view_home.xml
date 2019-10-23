@@ -43,26 +43,26 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.appcompat.widget.Toolbar>
 
-    <EditText
-        android:id="@+id/home_search"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/home_title"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="10dp"
-        android:background="@drawable/home_search_style"
-        android:hint="找资料"
-        android:gravity="center"
-        android:textSize="18sp"
-        />
+<!--    <EditText-->
+<!--        android:id="@+id/home_search"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="30dp"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/home_title"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginHorizontal="10dp"-->
+<!--        android:background="@drawable/home_search_style"-->
+<!--        android:hint="找资料"-->
+<!--        android:gravity="center"-->
+<!--        android:textSize="18sp"-->
+<!--        />-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/home_training"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/home_search"
+        app:layout_constraintTop_toBottomOf="@+id/home_title"
         app:layout_constraintRight_toLeftOf="@id/home_random_traning"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="15dp"
@@ -96,7 +96,7 @@
         android:id="@+id/home_random_traning"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/home_search"
+        app:layout_constraintTop_toBottomOf="@+id/home_title"
         app:layout_constraintLeft_toRightOf="@id/home_training"
         app:layout_constraintRight_toLeftOf="@id/home_virtual_exam"
         android:layout_marginTop="15dp"
@@ -131,7 +131,7 @@
         android:id="@+id/home_virtual_exam"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/home_search"
+        app:layout_constraintTop_toBottomOf="@+id/home_title"
         app:layout_constraintLeft_toRightOf="@id/home_random_traning"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="15dp"
@@ -199,101 +199,14 @@
 <!--        />-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/home_recent_study_resource"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/home_recent_study_recycle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/home_recent_study_layout"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        >
-
-        <ImageView
-            android:id="@+id/home_recent_study_resource_image"
-            android:layout_width="50dp"
-            android:layout_height="55dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/security"
-            android:padding="30dp"
-            />
-
-        <TextView
-            android:id="@+id/home_recent_study_resource_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toRightOf="@id/home_recent_study_resource_image"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:gravity="center_vertical"
-            android:text="安全守则"
-            android:textSize="16sp"
-            android:layout_marginLeft="15dp"
-            android:textColor="#BF000000"
-            />
-
-        <ImageView
-            android:id="@+id/home_recent_study_resource_image1"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/arrow_right"
-            android:alpha="0.4"
-            />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/home_recent_study_resource1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_recent_study_resource"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        >
-
-        <ImageView
-            android:id="@+id/home_recent_study_resource1_image"
-            android:layout_width="50dp"
-            android:layout_height="55dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/security1"
-            android:padding="30dp"
-            />
-
-        <TextView
-            android:id="@+id/home_recent_study_resource1_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toRightOf="@id/home_recent_study_resource1_image"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:gravity="center_vertical"
-            android:text="矿山安全管理守则"
-            android:textSize="16sp"
-            android:layout_marginLeft="15dp"
-            android:textColor="#BF000000"
-            />
-
-        <ImageView
-            android:id="@+id/home_recent_study_resource1_image1"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/arrow_right"
-            android:alpha="0.4"
-            />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/home_information"
@@ -301,7 +214,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_recent_study_resource1"
+        app:layout_constraintTop_toBottomOf="@+id/home_recent_study_recycle"
         android:layout_marginTop="20dp"
         android:background="#C9E7E7E7">
 
@@ -318,6 +231,7 @@
             android:paddingVertical="5dp"
             android:paddingLeft="10dp"
             android:textSize="12sp"
+
             />
 
         <!--        <ImageView-->
@@ -333,90 +247,13 @@
         <!--        />-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/home_information_one"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/home_plan_recycle"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/home_information"
-        >
-
-        <TextView
-            android:id="@+id/information_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:paddingLeft="20dp"
-            android:paddingTop="10dp"
-            android:text="关于矿山安全管理的第二次通知"
-            android:textColor="#BF000000"
-            android:textSize="16sp"
-            android:gravity="center_vertical"
-            />
-
-        <TextView
-            android:id="@+id/information_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:paddingLeft="20dp"
-            android:paddingBottom="10dp"
-            android:text="2019-10-13"
-            />
-
-        <TextView
-            android:background="#81919191"
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/home_information_two"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_information_one"
-        >
-
-        <TextView
-            android:id="@+id/two_nformation_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:paddingLeft="20dp"
-            android:paddingTop="10dp"
-            android:text="关于矿山安全管理的第三次通知"
-            android:textColor="#BF000000"
-            android:textSize="16sp"
-            android:gravity="center_vertical"
-            />
-
-        <TextView
-            android:id="@+id/two_information_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:paddingLeft="20dp"
-            android:paddingBottom="10dp"
-            android:text="2019-10-13"
-            />
-
-        <TextView
-            android:background="#81919191"
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

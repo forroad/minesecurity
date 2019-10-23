@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".ExamActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/online_exam_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:fitsSystemWindows="true"
+        android:background="@drawable/home_toolbar_layer">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/online_exam_return"
+                android:layout_width="20dp"
+                android:layout_height="25dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@drawable/arrow_left"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/online_exam_return"
+                app:layout_constraintBottom_toBottomOf="@id/online_exam_return"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/online_exam_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="在线考试"
+                    android:textSize="18sp"
+                    android:textColor="#BF000000"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/exam_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/online_exam_return"
+                app:layout_constraintBottom_toBottomOf="@id/online_exam_return"
+                android:text="00:12:33"
+                android:textColor="#0099ff"
+                android:textSize="15sp"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/exam_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/previous_question"
+        app:layout_constraintTop_toBottomOf="@id/online_exam_toolbar"
+        />
+
+    <Button
+        android:id="@+id/previous_question"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/next_question"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="上一题"
+        android:textColor="#fff"
+        android:background="#0099ff"
+        />
+
+    <Button
+        android:id="@+id/next_question"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/previous_question"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="下一题"
+        android:textColor="#fff"
+        android:background="#0099ff"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
